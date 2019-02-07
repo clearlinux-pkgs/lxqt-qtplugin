@@ -1,4 +1,4 @@
-PKG_NAME := lxqt-plugin
+PKG_NAME := lxqt-qtplugin
 URL = 
 ARCHIVES = 
 
