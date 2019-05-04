@@ -6,11 +6,11 @@
 #
 Name     : lxqt-qtplugin
 Version  : 0.14.0
-Release  : 5
+Release  : 6
 URL      : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz
 Source0  : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz
 Source99 : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz.asc
-Summary  : LXQt platform integration for Qt
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
 Requires: lxqt-qtplugin-lib = %{version}-%{release}
@@ -52,15 +52,16 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549550045
+export SOURCE_DATE_EPOCH=1556946188
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549550045
+export SOURCE_DATE_EPOCH=1556946188
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-qtplugin
 cp LICENSE %{buildroot}/usr/share/package-licenses/lxqt-qtplugin/LICENSE
