@@ -6,7 +6,7 @@
 #
 Name     : lxqt-qtplugin
 Version  : 0.14.0
-Release  : 6
+Release  : 7
 URL      : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz
 Source0  : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz
 Source99 : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz.asc
