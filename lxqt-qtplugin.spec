@@ -6,10 +6,10 @@
 #
 Name     : lxqt-qtplugin
 Version  : 0.14.0
-Release  : 13
-URL      : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz
-Source0  : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz
-Source99 : https://downloads.lxqt.org/downloads/lxqt-qtplugin/0.14.0/lxqt-qtplugin-0.14.0.tar.xz.asc
+Release  : 14
+URL      : https://github.com/lxqt/lxqt-qtplugin/releases/download/0.14.0/lxqt-qtplugin-0.14.0.tar.xz
+Source0  : https://github.com/lxqt/lxqt-qtplugin/releases/download/0.14.0/lxqt-qtplugin-0.14.0.tar.xz
+Source1  : https://github.com/lxqt/lxqt-qtplugin/releases/download/0.14.0/lxqt-qtplugin-0.14.0.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -18,8 +18,10 @@ Requires: lxqt-qtplugin-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libdbusmenu-qt-dev
+BuildRequires : liblxqt-data
 BuildRequires : libqtxdg-dev
 BuildRequires : lxqt-build-tools
+BuildRequires : qtbase-dev
 BuildRequires : qttools-dev
 
 %description
@@ -46,25 +48,30 @@ license components for the lxqt-qtplugin package.
 
 %prep
 %setup -q -n lxqt-qtplugin-0.14.0
+cd %{_builddir}/lxqt-qtplugin-0.14.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1556946188
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1598295908
 mkdir -p clr-build
 pushd clr-build
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %cmake ..
-make  %{?_smp_mflags} VERBOSE=1
+make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1556946188
+export SOURCE_DATE_EPOCH=1598295908
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-qtplugin
-cp LICENSE %{buildroot}/usr/share/package-licenses/lxqt-qtplugin/LICENSE
+cp %{_builddir}/lxqt-qtplugin-0.14.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-qtplugin/7fab4cd4eb7f499d60fe183607f046484acd6e2d
 pushd clr-build
 %make_install
 popd
@@ -78,4 +85,4 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/lxqt-qtplugin/LICENSE
+/usr/share/package-licenses/lxqt-qtplugin/7fab4cd4eb7f499d60fe183607f046484acd6e2d
