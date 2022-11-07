@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xBE793007AD22DF7E (tsujan2000@gmail.com)
 #
 Name     : lxqt-qtplugin
-Version  : 1.1.0
-Release  : 22
-URL      : https://github.com/lxqt/lxqt-qtplugin/releases/download/1.1.0/lxqt-qtplugin-1.1.0.tar.xz
-Source0  : https://github.com/lxqt/lxqt-qtplugin/releases/download/1.1.0/lxqt-qtplugin-1.1.0.tar.xz
-Source1  : https://github.com/lxqt/lxqt-qtplugin/releases/download/1.1.0/lxqt-qtplugin-1.1.0.tar.xz.asc
+Version  : 1.2.0
+Release  : 23
+URL      : https://github.com/lxqt/lxqt-qtplugin/releases/download/1.2.0/lxqt-qtplugin-1.2.0.tar.xz
+Source0  : https://github.com/lxqt/lxqt-qtplugin/releases/download/1.2.0/lxqt-qtplugin-1.2.0.tar.xz
+Source1  : https://github.com/lxqt/lxqt-qtplugin/releases/download/1.2.0/lxqt-qtplugin-1.2.0.tar.xz.asc
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -47,15 +47,15 @@ license components for the lxqt-qtplugin package.
 
 
 %prep
-%setup -q -n lxqt-qtplugin-1.1.0
-cd %{_builddir}/lxqt-qtplugin-1.1.0
+%setup -q -n lxqt-qtplugin-1.2.0
+cd %{_builddir}/lxqt-qtplugin-1.2.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1650292809
+export SOURCE_DATE_EPOCH=1667837846
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -68,10 +68,10 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1650292809
+export SOURCE_DATE_EPOCH=1667837846
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/lxqt-qtplugin
-cp %{_builddir}/lxqt-qtplugin-1.1.0/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-qtplugin/7fab4cd4eb7f499d60fe183607f046484acd6e2d
+cp %{_builddir}/lxqt-qtplugin-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/lxqt-qtplugin/7fab4cd4eb7f499d60fe183607f046484acd6e2d || :
 pushd clr-build
 %make_install
 popd
